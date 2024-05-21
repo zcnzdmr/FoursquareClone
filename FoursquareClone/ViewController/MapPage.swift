@@ -39,6 +39,7 @@ class MapPage: UIViewController {
     }
     
     // MARK: Annotation(pin) ekleme 
+    
     @objc func addAnnotation(gesRec: UILongPressGestureRecognizer) {
         
         let annotation = MKPointAnnotation()
@@ -49,6 +50,7 @@ class MapPage: UIViewController {
         annotation.coordinate = touchedCoordinate
         
         mapKit.addAnnotation(annotation)
+        self.navigationController?.pushViewController(HomePage(), animated: true)
     }
     
 }

@@ -25,6 +25,8 @@
 		F5751B092BFB763600A29FCC /* MapPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5751B082BFB763600A29FCC /* MapPage.swift */; };
 		F5751B0C2BFB797500A29FCC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5751B0B2BFB797500A29FCC /* MapKit.framework */; };
 		F5751B0E2BFB797D00A29FCC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5751B0D2BFB797D00A29FCC /* CoreLocation.framework */; };
+		F5AB4B062BFC96BC005456AD /* DetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB4B052BFC96BC005456AD /* DetailPage.swift */; };
+		F5AB4B092BFCC086005456AD /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = F5AB4B082BFCC086005456AD /* SDWebImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,7 @@
 		F5751B082BFB763600A29FCC /* MapPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPage.swift; sourceTree = "<group>"; };
 		F5751B0B2BFB797500A29FCC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F5751B0D2BFB797D00A29FCC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F5AB4B052BFC96BC005456AD /* DetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5AB4B092BFCC086005456AD /* SDWebImage in Frameworks */,
 				F5751B012BFB35DA00A29FCC /* FirebaseAuth in Frameworks */,
 				F5751B0E2BFB797D00A29FCC /* CoreLocation.framework in Frameworks */,
 				F5751B032BFB35DA00A29FCC /* FirebaseFirestore in Frameworks */,
@@ -109,6 +113,7 @@
 			children = (
 				F5751ADB2BFB2C5000A29FCC /* SignInPage.swift */,
 				F5751AEB2BFB2E7E00A29FCC /* HomePage.swift */,
+				F5AB4B052BFC96BC005456AD /* DetailPage.swift */,
 				F5751B062BFB454100A29FCC /* RegisterPage.swift */,
 				F5751B082BFB763600A29FCC /* MapPage.swift */,
 			);
@@ -179,6 +184,7 @@
 				F5751B002BFB35DA00A29FCC /* FirebaseAuth */,
 				F5751B022BFB35DA00A29FCC /* FirebaseFirestore */,
 				F5751B042BFB35DA00A29FCC /* FirebaseStorage */,
+				F5AB4B082BFCC086005456AD /* SDWebImage */,
 			);
 			productName = FoursquareClone;
 			productReference = F5751AD42BFB2C5000A29FCC /* FoursquareClone.app */;
@@ -210,6 +216,7 @@
 			mainGroup = F5751ACB2BFB2C5000A29FCC;
 			packageReferences = (
 				F5751AFF2BFB35DA00A29FCC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				F5AB4B072BFCC086005456AD /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = F5751AD52BFB2C5000A29FCC /* Products */;
 			projectDirPath = "";
@@ -239,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5751ADC2BFB2C5000A29FCC /* SignInPage.swift in Sources */,
+				F5AB4B062BFC96BC005456AD /* DetailPage.swift in Sources */,
 				F5751AD82BFB2C5000A29FCC /* AppDelegate.swift in Sources */,
 				F5751AF82BFB339800A29FCC /* HomeVM.swift in Sources */,
 				F5751B092BFB763600A29FCC /* MapPage.swift in Sources */,
@@ -472,6 +480,14 @@
 				minimumVersion = 10.26.0;
 			};
 		};
+		F5AB4B072BFCC086005456AD /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.19.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -489,6 +505,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F5751AFF2BFB35DA00A29FCC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		F5AB4B082BFCC086005456AD /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5AB4B072BFCC086005456AD /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

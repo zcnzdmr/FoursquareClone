@@ -26,7 +26,7 @@ class HomeCell: UITableViewCell {
         
         label1.frame = CGRect(x: 10, y: 0, width: contentView.frame.size.width, height: contentView.frame.size.height)
 //        label1.layer.borderWidth = 0.7
-        label1.text = "kamil"
+//        label1.text = "kamil"
         addSubview(label1)
         
     }
