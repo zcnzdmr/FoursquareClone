@@ -67,10 +67,7 @@ class RegisterPage: UIViewController {
         //                ])
     }
     
-    //    @objc func passToMapVM() {
-    //        self.navigationController?.pushViewController(MapPage(), animated: true)
-    //    }
-    
+    // MARK: UILongGestureRecog. oluşturma kısmı
     func tapGesture() {
         imageViewm.isUserInteractionEnabled = true
         let gR = UITapGestureRecognizer(target: self, action: #selector(showImagePickerController))
@@ -105,43 +102,50 @@ class RegisterPage: UIViewController {
                             
                             if let imageUrl = url?.absoluteString {
                                 
-                                
-                                // MARK: FireStore'a kayıt yapma
-                                
-                                let db = Firestore.firestore()
-
-                                let dataDict : [String:Any] = ["nameOfPlace"   : self.textField1.text!,
-                                                               "typeOfPlace"   : self.textField2.text!,
-                                                               "comment"       : self.textField3.text!,
-                                                               "date"          : FieldValue.serverTimestamp(),
-                                                               "imageUrl"      : imageUrl]
-                                
-                                db.collection("Places").addDocument(data: dataDict) { error in
-                                    if error != nil {
-                                        
-                                        self.alert(title: "Error", message: error?.localizedDescription ?? "An error saving to Firestore ")
-                                    }else{
-                                        self.imageViewm.image = UIImage(named: "arkaplan")
-                                        self.textField1.text = ""
-                                        self.textField2.text = ""
-                                        self.textField3.text = ""
-                                    }
+                                if let name = self.textField1.text, let type = self.textField2.text, let comment = self.textField3.text {
+                                    self.navigationController?.pushViewController(MapPage(nameOfPlace: name,
+                                                                                          typeOfPlace: type,
+                                                                                          comment: comment,
+                                                                                          imageUrl: imageUrl), animated: true)
+                                    
+                                    self.textField1.text = ""
+                                    self.textField2.text = ""
+                                    self.textField3.text = ""
+                                    
+                                    
+                                    //                                // MARK: FireStore'a kayıt yapma
+                                    //
+                                    //                                let db = Firestore.firestore()
+                                    //
+                                    //                                let dataDict : [String:Any] = ["nameOfPlace"   : self.textField1.text!,
+                                    //                                                               "typeOfPlace"   : self.textField2.text!,
+                                    //                                                               "comment"       : self.textField3.text!,
+                                    //                                                               "date"          : FieldValue.serverTimestamp(),
+                                    //                                                               "latitude"      : "",
+                                    //                                                               "longitude"     : "",
+                                    //                                                               "imageUrl"      : imageUrl]
+                                    //
+                                    //                                db.collection("Places").addDocument(data: dataDict) { error in
+                                    //                                    if error != nil {
+                                    //
+                                    //                                        self.alert(title: "Error", message: error?.localizedDescription ?? "An error saving to Firestore ")
+                                    //                                    }else{
+                                    //                                        self.imageViewm.image = UIImage(named: "arkaplan")
+                                    //                                        self.textField1.text = ""
+                                    //                                        self.textField2.text = ""
+                                    //                                        self.textField3.text = ""
+                                    //                                    }
+                                    //                                }
+                                    //
                                 }
-                                
                             }
                         }
                     }
                 }
             }
-            
-            self.navigationController?.pushViewController(MapPage(), animated: true)
         }
-        
     }
     
-    
-    
-
     // MARK: Alert fonksiyonu
     func alert(title:String,message:String) {
         
@@ -152,8 +156,6 @@ class RegisterPage: UIViewController {
         self.present(alert,animated: true)
         
     }
-    
-    
 }
 
 // MARK: Galeriden fotoğraf seçme kısmı
@@ -176,5 +178,5 @@ extension RegisterPage : UIImagePickerControllerDelegate, UINavigationController
         }
         dismiss(animated: true)
     }
-
+    
 }

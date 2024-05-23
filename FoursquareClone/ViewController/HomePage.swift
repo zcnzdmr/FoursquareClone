@@ -15,6 +15,8 @@ class HomePage: UIViewController {
     var typeArray     = [String]()
     var commentArray  = [String]()
     var urlArray      = [String]()
+    var latitudeArray = [Double]()
+    var longitudeArray = [Double]()
     var documentArray = [String]()
 
     override func viewDidLoad() {
@@ -97,6 +99,14 @@ class HomePage: UIViewController {
                             self.urlArray.append(imageUrl)
                         }
                         
+                        if let latitude = document.get("latitude") as? Double {
+                            self.latitudeArray.append(latitude)
+                        }
+                        
+                        if let longitude = document.get("longitude") as? Double {
+                            self.longitudeArray.append(longitude)
+                        }
+                        
                     }
                         self.tableViewm.reloadData()
                 }
@@ -106,8 +116,13 @@ class HomePage: UIViewController {
     }
     
     // MARK: DetailPage'e yönlendiren fonk
-    func passToDetail(nameArrayx:String,typeArrayx: String,commentArrayx : String,urlArrayx : String) {
-        self.navigationController?.pushViewController(DetailPage(nameArray:nameArrayx,typeArray: typeArrayx, commentArray : commentArrayx,urlArray : urlArrayx), animated: true)
+    func passToDetail(nameArrayx:String,typeArrayx: String,commentArrayx : String,urlArrayx : String, latitudex : Double, longitudex : Double) {
+        self.navigationController?.pushViewController(DetailPage(nameArray    : nameArrayx,
+                                                                 typeArray    : typeArrayx,
+                                                                 commentArray : commentArrayx,
+                                                                 urlArray     : urlArrayx,
+                                                                 latitude     : latitudex,
+                                                                 longitude    : longitudex), animated: true)
     }
     
     // MARK: Alert oluşturma kısmı
@@ -142,13 +157,13 @@ extension HomePage : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let name = nameArray[indexPath.row]
-        print(name)
         let type = typeArray[indexPath.row]
-        print(type)
         let comment = commentArray[indexPath.row]
-        print(comment)
         let url = urlArray[indexPath.row]
-        passToDetail(nameArrayx: name, typeArrayx: type, commentArrayx: comment, urlArrayx: url)
+        let latitudey = latitudeArray[indexPath.row]
+        let longitudey = longitudeArray[indexPath.row]
+        
+        passToDetail(nameArrayx: name, typeArrayx: type, commentArrayx: comment, urlArrayx: url ,latitudex: latitudey, longitudex: longitudey)
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
