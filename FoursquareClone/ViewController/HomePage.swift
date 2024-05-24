@@ -18,6 +18,8 @@ class HomePage: UIViewController {
     var latitudeArray = [Double]()
     var longitudeArray = [Double]()
     var documentArray = [String]()
+    
+    let db = Firestore.firestore()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,10 @@ class HomePage: UIViewController {
     
     // MARK: BarButtonItem Kısmı
     private func barButton() {
+        
+        let logOut = UIBarButtonItem()
+        logOut.tintColor = .black
+        self.navigationItem.backBarButtonItem = logOut
         
         let add = UIBarButtonItem(image: UIImage(systemName: "plus.square"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(passToAddPage))
         add.tintColor = .black
@@ -59,8 +65,6 @@ class HomePage: UIViewController {
     
     // MARK: FireStore'dan veri çekilen kısım
     func getData() {
-        
-        let db = Firestore.firestore()
         
         db.collection("Places").order(by: "date", descending: true).addSnapshotListener { snapshot, error in
             
@@ -166,6 +170,28 @@ extension HomePage : UITableViewDelegate, UITableViewDataSource {
         passToDetail(nameArrayx: name, typeArrayx: type, commentArrayx: comment, urlArrayx: url ,latitudex: latitudey, longitudex: longitudey)
         tableView.deselectRow(at: indexPath, animated: true)
         
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let action = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Delete") { contextualaction, view , bool in
+            
+            let alert2 = UIAlertController(title: "Delete", message: "\(self.nameArray[indexPath.row]) is gonna deleted ?", preferredStyle: .alert)
+            
+            let yes = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) { alertaction in
+                
+                self.db.collection("Places").document("\(self.documentArray[indexPath.row])").delete()
+                print("Document successfully removed!")
+            }
+            alert2.addAction(yes)
+            
+            let no = UIAlertAction(title: "No", style: UIAlertAction.Style.destructive)
+            alert2.addAction(no)
+            
+            self.present(alert2, animated: true)
+            
+        }
+        return UISwipeActionsConfiguration(actions: [action])
     }
 
 }

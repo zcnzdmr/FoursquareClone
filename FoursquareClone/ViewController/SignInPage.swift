@@ -41,19 +41,25 @@ class SignInPage: UIViewController {
     private func setUpUIS() {
         
         let screenWidth = view.frame.size.width
+        
+        // MARK: BackBar Button Item oluşturma kısmı
+        let logOut = UIBarButtonItem()
+        logOut.tintColor = .black
+        logOut.title = "Log Out"
+        self.navigationItem.backBarButtonItem = logOut
 
         viewImage.frame = view.bounds
-        viewImage.image = UIImage(named: "bugs")
+        viewImage.image = UIImage(named: "bart")
         view.addSubview(viewImage)
         
-        titleLabel.frame = CGRect(x: 20, y: 100, width: (screenWidth - 40), height: 70)
-        titleLabel.text = "Foursquare Clone"
-        titleLabel.font  = UIFont(name: "ChalkDuster", size: 35)
-        titleLabel.textColor = .white
+        titleLabel.frame = CGRect(x: 10, y: 100, width: (screenWidth - 20), height: 70)
+        titleLabel.text = "Foursquare Clone 📍"
+        titleLabel.font  = UIFont(name: "Arial", size: 30)
+        titleLabel.textColor = .black
         titleLabel.layer.borderWidth = 0.7
         titleLabel.layer.cornerRadius = 6
         titleLabel.clipsToBounds = true
-        titleLabel.backgroundColor = .orange
+        titleLabel.backgroundColor = .systemYellow
         titleLabel.textAlignment = .center
         view.addSubview(titleLabel)
         
@@ -71,8 +77,8 @@ class SignInPage: UIViewController {
         
         signInButon.frame = CGRect(x: 35, y: 390, width: 120, height: 50)
         signInButon.setTitle("Sign in", for: UIControl.State.normal)
-        signInButon.setTitleColor(UIColor.white, for: UIControl.State.normal)
-        signInButon.backgroundColor = .orange
+        signInButon.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        signInButon.backgroundColor = .systemYellow
         signInButon.layer.borderWidth = 1
         signInButon.layer.cornerRadius = 10
         signInButon.addTarget(self, action: #selector(signInFonk), for: UIControl.Event.touchUpInside)
@@ -80,8 +86,8 @@ class SignInPage: UIViewController {
         
         signUpButon.frame = CGRect(x: (screenWidth - 155), y: 390, width: 120, height: 50)
         signUpButon.setTitle("Sign up", for: UIControl.State.normal)
-        signUpButon.setTitleColor(UIColor.white, for: UIControl.State.normal)
-        signUpButon.backgroundColor = .orange
+        signUpButon.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        signUpButon.backgroundColor = .systemYellow
         signUpButon.layer.borderWidth = 1
         signUpButon.layer.cornerRadius = 10
         signUpButon.addTarget(self, action: #selector(signUpFonk), for: UIControl.Event.touchUpInside)

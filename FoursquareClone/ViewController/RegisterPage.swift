@@ -38,17 +38,18 @@ class RegisterPage: UIViewController {
         view.addSubview(imageViewm)
         
         textField1.frame = CGRect(x: 5, y: 450, width: (screenWidth - 10), height: 40)
-        textField1.layer.borderWidth = 0.7
+//        textField1.layer.borderWidth = 0.7
+        textField1.borderStyle = .roundedRect
         textField1.placeholder = "Enter the name of place"
         view.addSubview(textField1)
         
         textField2.frame = CGRect(x: 5, y: 500, width: (screenWidth - 10), height: 40)
-        textField2.layer.borderWidth = 0.7
+        textField2.borderStyle = .roundedRect
         textField2.placeholder = "Enter the type of place"
         view.addSubview(textField2)
         
         textField3.frame = CGRect(x: 5, y: 550, width: (screenWidth - 10), height: 40)
-        textField3.layer.borderWidth = 0.7
+        textField3.borderStyle = .roundedRect
         textField3.placeholder = "Enter the attribute of place"
         view.addSubview(textField3)
         
