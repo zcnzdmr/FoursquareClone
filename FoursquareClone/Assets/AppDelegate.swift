@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseCore
+import FirebaseAuth
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,9 +21,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         let nav1 = UINavigationController()
+        
         let mainView = SignInPage(nibName: nil, bundle: nil)
-        nav1.viewControllers = [mainView]
-        self.window?.rootViewController = nav1
+        let mainView2 = HomePage(nibName: nil, bundle: nil)
+        
+        // MARK: Kullanici kaydedip yönlendirme kısmı
+        let currentUser = Auth.auth().currentUser
+        if currentUser != nil {
+            nav1.viewControllers = [mainView2]
+            self.window?.rootViewController = nav1
+        }else{
+            nav1.viewControllers = [mainView]
+            self.window?.rootViewController = nav1
+        }
+        
         self.window?.makeKeyAndVisible()
         
         return true

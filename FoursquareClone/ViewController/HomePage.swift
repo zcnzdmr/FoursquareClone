@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseAuth
 
 class HomePage: UIViewController {
     
@@ -35,9 +36,13 @@ class HomePage: UIViewController {
     // MARK: BarButtonItem Kısmı
     private func barButton() {
         
-        let logOut = UIBarButtonItem()
+//        let logOut = UIBarButtonItem()
+//        logOut.tintColor = .black
+//        self.navigationItem.backBarButtonItem = logOut
+        
+        let logOut = UIBarButtonItem(title: "Log out", style: UIBarButtonItem.Style.plain, target: self, action: #selector(logOutFonk))
         logOut.tintColor = .black
-        self.navigationItem.backBarButtonItem = logOut
+        self.navigationItem.leftBarButtonItem = logOut
         
         let add = UIBarButtonItem(image: UIImage(systemName: "plus.square"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(passToAddPage))
         add.tintColor = .black
@@ -49,6 +54,17 @@ class HomePage: UIViewController {
     // MARK: RegisterPage'e götüren fonk.
     @objc func passToAddPage() {
         self.show(RegisterPage(), sender: nil)
+    }
+    
+    @objc func logOutFonk() {
+        do {
+            try Auth.auth().signOut()
+            self.navigationController?.pushViewController(SignInPage(), animated: true)
+            
+        }catch{
+            print(error.localizedDescription)
+        }
+        
     }
     
     // MARK: tableView Kurulum kısmı

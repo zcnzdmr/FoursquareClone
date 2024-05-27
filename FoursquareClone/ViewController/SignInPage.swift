@@ -24,19 +24,22 @@ class SignInPage: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setUpUIS()
-        currentUserFonk()
+//        currentUserFonk()
     }
     
+    //
     override func viewWillAppear(_ animated: Bool) {
-        // buraya tabbarı kaybetmek için kod yazılabilir
+        
+        // Burda sayfanın geri butonunu gizledik.
+        self.navigationItem.setHidesBackButton(true, animated: true)
     }
     
-        func currentUserFonk() {
-            let currentUser = Auth.auth().currentUser
-            if currentUser != nil {
-                self.navigationController?.pushViewController(HomePage(), animated: true)
-            }
-        }
+//        func currentUserFonk() {
+//            let currentUser = Auth.auth().currentUser
+//            if currentUser != nil {
+//                self.navigationController?.pushViewController(HomePage(), animated: true)
+//            }
+//        }
     
     private func setUpUIS() {
         
