@@ -31,7 +31,7 @@ class SignInPage: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         // Burda sayfanın geri butonunu gizledik.
-        self.navigationItem.setHidesBackButton(true, animated: true)
+//        self.navigationItem.setHidesBackButton(true, animated: true)
     }
     
 //        func currentUserFonk() {

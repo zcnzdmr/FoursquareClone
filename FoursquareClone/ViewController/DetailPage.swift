@@ -44,6 +44,11 @@ class DetailPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.navigationItem.title = "Detail Page"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black,
+                                                                        NSAttributedString.Key.font : UIFont(name: "Papyrus", size: 20)!]
+        
         setUpUIs()
         mapkit()
     }

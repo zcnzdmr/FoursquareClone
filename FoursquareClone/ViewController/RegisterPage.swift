@@ -21,8 +21,25 @@ class RegisterPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleSetUp()
         setUpUIs()
         tapGesture()
+        self.navigationItem.backButtonTitle = ""
+    }
+    
+    // MARK: NavigationBar title rengi, gölgesi, boyutu ve ismi ayarlama kısmı
+    private func titleSetUp() {
+        
+        // Create and configure the shadow
+        let shadow = NSShadow()
+        shadow.shadowColor = UIColor.red
+        shadow.shadowOffset = CGSize(width: -2, height: -2)
+        shadow.shadowBlurRadius = 1
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black,
+                                                                        NSAttributedString.Key.font : UIFont(name: "Papyrus", size: 20)!,
+                                                                        NSAttributedString.Key.shadow : shadow]
+        self.navigationItem.title = "Register Page"
     }
     
     // MARK: Görsel Nesneleri ayarlama kısmı
@@ -38,7 +55,7 @@ class RegisterPage: UIViewController {
         view.addSubview(imageViewm)
         
         textField1.frame = CGRect(x: 5, y: 450, width: (screenWidth - 10), height: 40)
-//        textField1.layer.borderWidth = 0.7
+        //        textField1.layer.borderWidth = 0.7
         textField1.borderStyle = .roundedRect
         textField1.placeholder = "Enter the name of place"
         view.addSubview(textField1)
@@ -113,31 +130,6 @@ class RegisterPage: UIViewController {
                                     self.textField2.text = ""
                                     self.textField3.text = ""
                                     
-                                    
-                                    //                                // MARK: FireStore'a kayıt yapma
-                                    //
-                                    //                                let db = Firestore.firestore()
-                                    //
-                                    //                                let dataDict : [String:Any] = ["nameOfPlace"   : self.textField1.text!,
-                                    //                                                               "typeOfPlace"   : self.textField2.text!,
-                                    //                                                               "comment"       : self.textField3.text!,
-                                    //                                                               "date"          : FieldValue.serverTimestamp(),
-                                    //                                                               "latitude"      : "",
-                                    //                                                               "longitude"     : "",
-                                    //                                                               "imageUrl"      : imageUrl]
-                                    //
-                                    //                                db.collection("Places").addDocument(data: dataDict) { error in
-                                    //                                    if error != nil {
-                                    //
-                                    //                                        self.alert(title: "Error", message: error?.localizedDescription ?? "An error saving to Firestore ")
-                                    //                                    }else{
-                                    //                                        self.imageViewm.image = UIImage(named: "arkaplan")
-                                    //                                        self.textField1.text = ""
-                                    //                                        self.textField2.text = ""
-                                    //                                        self.textField3.text = ""
-                                    //                                    }
-                                    //                                }
-                                    //
                                 }
                             }
                         }

@@ -11,20 +11,26 @@ import FirebaseAuth
 
 class HomePage: UIViewController {
     
-    var tableViewm    = UITableView()
-    var nameArray     = [String]()
-    var typeArray     = [String]()
-    var commentArray  = [String]()
-    var urlArray      = [String]()
-    var latitudeArray = [Double]()
+    var tableViewm     = UITableView()
+    var nameArray      = [String]()
+    var typeArray      = [String]()
+    var commentArray   = [String]()
+    var urlArray       = [String]()
+    var latitudeArray  = [Double]()
     var longitudeArray = [Double]()
-    var documentArray = [String]()
+    var documentArray  = [String]()
     
     let db = Firestore.firestore()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.navigationController?.navigationBar.titleTextAttributes =
+        [NSAttributedString.Key.foregroundColor: UIColor.black,
+         NSAttributedString.Key.font: UIFont(name: "Papyrus", size: 20)!]
+        
+        self.navigationItem.title = "HomePage"
+        
         tableSetUp()
         barButton()
     }
@@ -40,7 +46,9 @@ class HomePage: UIViewController {
 //        logOut.tintColor = .black
 //        self.navigationItem.backBarButtonItem = logOut
         
-        let logOut = UIBarButtonItem(title: "Log out", style: UIBarButtonItem.Style.plain, target: self, action: #selector(logOutFonk))
+        self.navigationItem.backButtonTitle = "Back"
+        
+        let logOut = UIBarButtonItem(image: UIImage(systemName: "person.slash"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(logOutFonk))
         logOut.tintColor = .black
         self.navigationItem.leftBarButtonItem = logOut
         
@@ -59,7 +67,9 @@ class HomePage: UIViewController {
     @objc func logOutFonk() {
         do {
             try Auth.auth().signOut()
-            self.navigationController?.pushViewController(SignInPage(), animated: true)
+            HomePage().modalPresentationStyle = .fullScreen
+            self.present(SignInPage(), animated: true)
+//            self.navigationController?.pushViewController(SignInPage(), animated: true)
             
         }catch{
             print(error.localizedDescription)
